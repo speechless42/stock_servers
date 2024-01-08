@@ -10,7 +10,7 @@ const app = express();
 initializeApp()
   .then(() => {
     // 將路由模組整合進Express應用程式中
-    // app.use('/api', apiRouter);
+    app.use('/api', apiRouter);
 
     // 其他啟動邏輯...
     const port = process.env.PORT || 3000;

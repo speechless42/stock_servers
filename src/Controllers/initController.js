@@ -22,7 +22,7 @@ const initializeApp = async () => {
     
   }
     //設定每個月1,3,5,7,10日爬取營收
-    cron.schedule('0 8 3,5,7,10 * *', async () => {
+    cron.schedule('0 32 15 3,5,8,10 * *', async () => {
       console.log('Running scrapingRevenue task...');
       await C_scrapingRevenue()
       console.log('Scraping task completed.');

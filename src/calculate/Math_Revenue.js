@@ -13,8 +13,8 @@ async function Trade_L_Year_Revenue(market,data){
     return Return_Data
 }
 
-async function Trade_ALL_Revenue(market,data){
-    let Return_Data = await data.Get_Revenue(market)
+async function Trade_ALL_Revenue(Return_Data){
+    
     Return_Data = Return_Data.filter(el => el.L_Year_Compare > 20 )
     Return_Data = Return_Data.filter(el => el.L_Mon_Compare > 0 )
     Return_Data = Return_Data.filter(el => el.revenue > 100000)

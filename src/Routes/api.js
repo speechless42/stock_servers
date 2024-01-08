@@ -5,8 +5,11 @@ const getRenvenue = require('../Controllers/getDataController/C_getRevenue').get
 
 // 股票資訊路由
 router.get('/Revenue_Rank', async (req, res) => {
-    console.log(await getRenvenue())
-    res.json({ success: true });
+    let dta = await getRenvenue();
+    // dta = dta.map((data)=>{data})
+    console.log(dta)
+    dta = JSON.stringify(dta)
+    res.send(dta)
 });
 
 module.exports = router;

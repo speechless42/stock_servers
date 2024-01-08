@@ -6,7 +6,12 @@ async function Get_Revenue(market){
     const today = new Date();
     const Year = today.getFullYear() - 1911;
     const Month = today.getMonth();
-    const page = await axios.get(`https://mops.twse.com.tw/nas/t21/${market}/t21sc03_${Year}_${Month}_0.html`,
+    let url = ''
+    if(Month == 0){url = `https://mops.twse.com.tw/nas/t21/${market}/t21sc03_${Year-1}_${12}_0.html`}
+    else{
+      url = `https://mops.twse.com.tw/nas/t21/${market}/t21sc03_${Year}_${Month}_0.html`
+    }
+    const page = await axios.get(url,
     { responseType: 'arraybuffer' }).then(response => iconv.decode(response.data, 'big5'))
     const $ = cheerio.load(page);
 
@@ -27,7 +32,6 @@ async function Get_Revenue(market){
        const Remark = td.eq(10).text().trim();//去年比較增減(%)
        return { symbol, name, revenue,L_Mon_Compare,L_Year_Compare,Remark };
      }).toArray();
-     
      return data
 }
 module.exports = {
