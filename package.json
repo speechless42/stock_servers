@@ -2,7 +2,7 @@
   "dependencies": {
     "@fugle/marketdata": "^1.0.3",
     "@fugle/trade": "^2.0.0",
-    "axios": "^1.6.2",
+    "axios": "^1.6.8",
     "cheerio": "^1.0.0-rc.12",
     "cron": "^3.1.6",
     "dotenv": "^16.3.1",

@@ -1,6 +1,7 @@
 const  initializeData  = require('../Services/dataInitializationService').initializeData;
 const { runScrapingTask } = require('./scrapingController/stockDetail');
 const { C_scrapingRevenue } = require('./scrapingController/scrapingRevenue')
+const { C_scrapinginvest } = require('./scrapingController/scrapinginvest')
 const cron = require('node-cron');
 
 const initializeApp = async () => {
@@ -28,7 +29,24 @@ const initializeApp = async () => {
       console.log('Running scrapingDetail task...');
       if(isdo){await runScrapingTask();console.log('Scraping StockDatatask completed.');}
     });
-    
+    //設定每天三點半執行一次爬取投信買張任務
+    cron.schedule('30 15 * * *', async () => {
+
+      const nodate = ["25","26","27","28","29","210","211","212","213","214","215","228","44","45","51","610","917","1010"]
+      let month = today.getMonth()+1;
+      let Date = today.getDate();
+      let thisdate = `${month}${Date}`
+      let week = today.getDay();
+      let isdo = true;
+      nodate.forEach((el)=>{
+        if(el == thisdate){isdo = false}
+      })
+      if(week == 0 || week == 6){sido = false}
+      
+      console.log('Running scrapingDetail task...');
+      if(isdo){await C_scrapinginvest();console.log('Scraping investdata completed.');}
+    });
+
   
     //設定每個月1,3,5,7,10日爬取營收
     cron.schedule('0 0 8 3,4,5,6,7,8,7,9,10 * *', async () => {

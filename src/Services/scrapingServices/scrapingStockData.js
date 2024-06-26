@@ -24,7 +24,7 @@ async function Get_Daily_Details(){
     for(let i=0;i<FilterIDs.length;i++){
         
         setTimeout(async function() {
-            let Data = await stock.historical.candles({symbol:FilterIDs[i],to:"2023-12-29",from:"2023-12-29",timeframe:'D',fields: 'open,high,low,close,volume,change'})
+            let Data = await stock.historical.candles({symbol:FilterIDs[i],to:ThisDay,from:ThisDay,timeframe:'D',fields: 'open,high,low,close,volume,change'})
             await SaveDetails(Data)
             console.log("儲存成功")
         },i*10000)

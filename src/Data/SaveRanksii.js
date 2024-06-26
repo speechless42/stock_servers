@@ -2,7 +2,10 @@ const revenueYearRanks = require("../../models").revenueYearRanks
 
 async function SaveRevenueRanks(json){
     const today = new Date();
-    let ThisDay = `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`
+    let month;
+    if(today.getMonth() == 0){month = 12}
+    else{month = today.getMonth()}
+    let ThisDay = `${today.getFullYear()}-${month}-${today.getDate()}`
     for(let i=0;i<json.length;i++){
         setTimeout(async ()=>{
             revenueYearRanks.findAll({where:{symbol : json[i].symbol}})
